@@ -87,11 +87,11 @@ class LofiVisualizerApp {
             this.audioEngine = new AudioEngine(this.audioElement);
             await this.audioEngine.init();
 
-            // Initialize beat detector
+            // Initialize beat detector (tighter timing for better sync)
             this.beatDetector = new BeatDetector({
-                sensitivity: 1.35,
-                decayRate: 0.92,
-                cooldownMs: 200
+                sensitivity: 1.3,
+                decayRate: 0.82,    // Faster decay = snappier response
+                cooldownMs: 120     // Allow faster consecutive beats
             });
 
             // Initialize visualizer

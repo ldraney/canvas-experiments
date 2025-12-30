@@ -41,7 +41,7 @@ export class AudioEngine {
         // Create analyser node
         this.analyser = this.context.createAnalyser();
         this.analyser.fftSize = 2048;
-        this.analyser.smoothingTimeConstant = 0.8; // Smooth for lofi feel
+        this.analyser.smoothingTimeConstant = 0.3; // Lower = tighter sync with audio
         this.analyser.minDecibels = -90;
         this.analyser.maxDecibels = -10;
 

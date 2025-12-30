@@ -113,9 +113,9 @@ export class Visualizer {
         this.smoothedMid = 0;
         this.smoothedHigh = 0;
 
-        // Waveform history for smoothing
+        // Waveform history for smoothing (lower = more responsive)
         this.waveformHistory = [];
-        this.waveformHistoryLength = 3;
+        this.waveformHistoryLength = 2;
 
         // Effects
         this.filmGrain = new FilmGrain(0.035);
@@ -172,11 +172,11 @@ export class Visualizer {
     render(audioData, beatDetector, timestamp) {
         this.time = timestamp;
 
-        // Smooth audio values
-        this.smoothedBass = this.lerp(this.smoothedBass, audioData.bass, 0.15);
-        this.smoothedMid = this.lerp(this.smoothedMid, audioData.mid, 0.12);
-        this.smoothedHigh = this.lerp(this.smoothedHigh, audioData.high, 0.1);
-        this.smoothedEnergy = this.lerp(this.smoothedEnergy, audioData.overall, 0.1);
+        // Smooth audio values (higher = more responsive, lower = smoother)
+        this.smoothedBass = this.lerp(this.smoothedBass, audioData.bass, 0.5);
+        this.smoothedMid = this.lerp(this.smoothedMid, audioData.mid, 0.45);
+        this.smoothedHigh = this.lerp(this.smoothedHigh, audioData.high, 0.4);
+        this.smoothedEnergy = this.lerp(this.smoothedEnergy, audioData.overall, 0.4);
 
         const smoothedData = {
             bass: this.smoothedBass,
