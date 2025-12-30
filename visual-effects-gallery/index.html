@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Visual Effects Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Gallery Header -->
+    <header class="gallery-header">
+        <h1>Canvas Visual Effects Gallery</h1>
+
+        <!-- Category Navigation -->
+        <nav class="category-nav">
+            <button data-category="all" class="active">All</button>
+            <button data-category="particles">Particles</button>
+            <button data-category="fractals">Fractals</button>
+            <button data-category="generative">Generative</button>
+            <button data-category="gradients">Gradients</button>
+            <button data-category="animation">Animation</button>
+            <button data-category="physics">Physics</button>
+        </nav>
+
+        <!-- Difficulty Filters -->
+        <div class="difficulty-filters">
+            <label>
+                <input type="checkbox" value="beginner" checked>
+                <span class="difficulty-badge beginner"></span>
+                Beginner
+            </label>
+            <label>
+                <input type="checkbox" value="intermediate" checked>
+                <span class="difficulty-badge intermediate"></span>
+                Intermediate
+            </label>
+            <label>
+                <input type="checkbox" value="advanced" checked>
+                <span class="difficulty-badge advanced"></span>
+                Advanced
+            </label>
+        </div>
+    </header>
+
+    <!-- Demo Grid -->
+    <main id="demo-grid" class="demo-grid">
+        <!-- Cards populated by JavaScript -->
+    </main>
+
+    <!-- Full-screen Demo Viewer -->
+    <div id="demo-viewer" class="demo-viewer hidden">
+        <button id="close-demo" class="close-btn">&times;</button>
+
+        <div class="demo-canvas-container">
+            <canvas id="demo-canvas"></canvas>
+        </div>
+
+        <aside class="demo-sidebar">
+            <div class="sidebar-header">
+                <h2 id="sidebar-title" class="sidebar-title">Demo Title</h2>
+                <p id="sidebar-description" class="sidebar-description">Description</p>
+                <div class="sidebar-meta">
+                    <span id="sidebar-difficulty" class="card-difficulty beginner">Beginner</span>
+                    <span id="sidebar-category" class="card-category">Category</span>
+                </div>
+            </div>
+
+            <div id="controls-container" class="controls-section">
+                <h3>Controls</h3>
+                <!-- Controls populated by JavaScript -->
+            </div>
+
+            <details class="code-section">
+                <summary>View Code Snippet</summary>
+                <pre><code id="code-snippet">// Demo code will appear here</code></pre>
+            </details>
+        </aside>
+    </div>
+
+    <script type="module" src="js/gallery.js"></script>
+</body>
+</html>
