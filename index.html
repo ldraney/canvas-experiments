@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Experiments</title>
+    <meta name="description" content="A playground for exploring HTML5 Canvas - from visualizations to creative coding experiments.">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a25;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+            --border-color: #2a2a35;
+            --border-radius: 12px;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .project-card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .project-card .icon {
+            font-size: 1.75rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .project-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent-primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .arrow {
+            margin-left: auto;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.25s ease;
+            color: var(--accent-primary);
+        }
+
+        .project-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-primary);
+        }
+
+        .tech-stack {
+            margin-top: 8px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 30px 16px;
+            }
+
+            .hero {
+                margin-bottom: 40px;
+            }
+
+            .project-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="hero">
+            <h1>Canvas Experiments</h1>
+            <p>Exploring the power of HTML5 Canvas through interactive visualizations and creative coding.</p>
+        </section>
+
+        <section class="projects">
+            <a href="./visual-effects-gallery/" class="project-card">
+                <h2>
+                    <span class="icon">&#10024;</span>
+                    Visual Effects Gallery
+                    <span class="arrow">&#8594;</span>
+                </h2>
+                <p>36 interactive demos showcasing particles, fractals, generative art, gradients, animation techniques, and physics simulations.</p>
+                <div class="tags">
+                    <span class="tag">36 Demos</span>
+                    <span class="tag">6 Categories</span>
+                    <span class="tag">Interactive</span>
+                </div>
+            </a>
+
+            <a href="./music-visualization/" class="project-card">
+                <h2>
+                    <span class="icon">&#127925;</span>
+                    Music Visualization
+                    <span class="arrow">&#8594;</span>
+                </h2>
+                <p>Real-time audio-reactive visualizer with beat detection, frequency analysis, and layered canvas effects responding to lofi music.</p>
+                <div class="tags">
+                    <span class="tag">Web Audio API</span>
+                    <span class="tag">Beat Detection</span>
+                    <span class="tag">Lofi</span>
+                </div>
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            <a href="https://github.com/ldraney/canvas-experiments" target="_blank" rel="noopener">View on GitHub</a>
+        </p>
+        <p class="tech-stack">
+            Vanilla JavaScript &bull; HTML5 Canvas API &bull; Web Audio API
+        </p>
+    </footer>
+</body>
+</html>
