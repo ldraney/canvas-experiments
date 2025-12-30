@@ -29,10 +29,24 @@ Mids: 250-2000Hz → Particle velocity, waveform amplitude
 Highs: 2000-16kHz → Particle shimmer, texture
 ```
 
+### Audio-Visual Timing
+Critical settings for tight synchronization:
+```javascript
+// AudioEngine.js
+analyser.smoothingTimeConstant = 0.3  // Lower = tighter FFT response
+
+// Visualizer.js - lerp factors (higher = more responsive)
+smoothedBass: 0.5
+smoothedMid: 0.45
+smoothedHigh: 0.4
+waveformHistoryLength: 2  // frames
+```
+
 ### Beat Detection
 - Compares current bass energy to rolling average (30 frames)
-- Threshold: 1.35x local average + standard deviation
-- Cooldown: 200ms between beats
+- Threshold: 1.3x local average + standard deviation
+- Cooldown: 120ms between beats
+- Decay rate: 0.82 (controls how fast beat intensity fades)
 
 ## Development
 
