@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lofi Visualizer - Neon Noir</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Start Screen Overlay -->
+    <div id="startScreen" class="overlay">
+        <div class="start-content">
+            <h1>Lofi Visualizer</h1>
+            <p class="track-name">Neon Noir - Centz</p>
+            <p class="subtitle">Click anywhere to begin</p>
+            <button id="startBtn" class="start-button">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Canvas -->
+    <canvas id="visualizer"></canvas>
+
+    <!-- Audio Element -->
+    <audio id="audio" src="assets/neon-noir.mp3" preload="auto"></audio>
+
+    <!-- Controls Overlay -->
+    <div id="controls" class="controls hidden">
+        <button id="playPauseBtn" class="control-btn">
+            <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg id="pauseIcon" class="hidden" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+        </button>
+
+        <div class="track-info">
+            <span class="track-title">Neon Noir</span>
+            <span class="track-artist">Centz</span>
+        </div>
+
+        <div class="volume-control">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="volume-icon">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+            </svg>
+            <input type="range" id="volumeSlider" min="0" max="100" value="70">
+        </div>
+
+        <div id="timeDisplay" class="time-display">0:00 / 0:00</div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

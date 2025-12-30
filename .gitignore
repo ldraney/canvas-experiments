@@ -1,0 +1,17 @@
+# Claude Code local settings
+.claude/
+
+# Playwright MCP output
+.playwright-mcp/
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+*.swo

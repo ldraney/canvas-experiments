@@ -1,0 +1,272 @@
+/* Lofi Visualizer - Styles */
+:root {
+    --bg-dark: #0f0a1a;
+    --bg-mid: #1a1028;
+    --accent-warm: #ff6b6b;
+    --accent-purple: #b4a7d6;
+    --accent-gold: #feca57;
+    --text-soft: #e8e8e8;
+    --text-muted: #888;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-dark);
+    overflow: hidden;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-soft);
+}
+
+/* Canvas fills entire viewport */
+#visualizer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+
+/* Start Screen Overlay */
+.overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 10, 26, 0.97);
+    z-index: 100;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    cursor: pointer;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.start-content {
+    text-align: center;
+    animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.start-content h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent-warm), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.start-content .track-name {
+    font-size: 1.2rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+}
+
+.start-content .subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.start-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-warm);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.start-button svg {
+    width: 40px;
+    height: 40px;
+    color: var(--accent-warm);
+    margin-left: 5px; /* Visual centering for play icon */
+    transition: color 0.3s ease;
+}
+
+.start-button:hover {
+    background: var(--accent-warm);
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(255, 107, 107, 0.4);
+}
+
+.start-button:hover svg {
+    color: var(--bg-dark);
+}
+
+/* Controls Bar */
+.controls {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 30px;
+    background: rgba(15, 10, 26, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 50;
+    transition: opacity 0.5s ease;
+}
+
+.controls.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent-warm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+}
+
+.control-btn svg {
+    width: 24px;
+    height: 24px;
+    color: var(--bg-dark);
+}
+
+.control-btn svg.hidden {
+    display: none;
+}
+
+/* Track Info */
+.track-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+}
+
+.track-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-soft);
+}
+
+.track-artist {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Volume Control */
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.volume-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 80px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+/* Time Display */
+.time-display {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    min-width: 90px;
+    text-align: right;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .start-content h1 {
+        font-size: 2rem;
+    }
+
+    .controls {
+        padding: 12px 20px;
+        gap: 12px;
+        bottom: 20px;
+    }
+
+    .track-info {
+        display: none;
+    }
+
+    .time-display {
+        display: none;
+    }
+
+    input[type="range"] {
+        width: 60px;
+    }
+}
